@@ -1,6 +1,6 @@
 <?php
 
-namespace Tdn\Common\Util;
+namespace Gdbots\Common\Util;
 
 class StringUtils
 {

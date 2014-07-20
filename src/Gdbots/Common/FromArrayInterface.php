@@ -1,6 +1,6 @@
 <?php
 
-namespace Tdn\Common;
+namespace Gdbots\Common;
 
 /**
  * An object that can be restore from an array

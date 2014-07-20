@@ -1,8 +1,8 @@
 <?php
 
-namespace CrowdFusion\Common\Util;
+namespace Gdbots\Common\Util;
 
-class ClassUtils extends \ClassUtils
+class ClassUtils
 {
     /**
      * Keeps a static reference of all requests for a classes traits.

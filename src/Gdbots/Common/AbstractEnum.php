@@ -6,7 +6,7 @@
  * @license http://www.opensource.org/licenses/mit-license.php MIT (see the LICENSE file)
 */
 
-namespace Tdn\Common;
+namespace Gdbots\Common;
 
 abstract class AbstractEnum implements \JsonSerializable
 {
