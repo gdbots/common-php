@@ -50,4 +50,16 @@ class ClassUtils
         self::$classTraits[$cachKey] = array_unique($traits);
         return self::$classTraits[$cachKey];
     }
+
+    /**
+     * Returns true if a class uses a given trait.
+     *
+     * @param string|object $class
+     * @param string $trait full qualified class name
+     * @return bool
+     */
+    public static function usesTrait($class, $trait)
+    {
+        return in_array($trait, self::getTraits($class));
+    }
 }
