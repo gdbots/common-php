@@ -1,18 +1,18 @@
 <?php
 /**
- * Copied from original author and moved to this namespace, also implemented \JsonSerializable
+ * Combination of aws php sdk and myclabs for flyweight enums
  *
+ * @link https://github.com/aws/aws-sdk-php/
  * @link http://github.com/myclabs/php-enum
- * @license http://www.opensource.org/licenses/mit-license.php MIT (see the LICENSE file)
-*/
+ */
 
 namespace Gdbots\Common;
 
 abstract class AbstractEnum implements \JsonSerializable
 {
     /**
-     * Enum value
-     * @var mixed
+     * The value of the current enum.
+     * @var int|string
      */
     protected $value;
 
@@ -20,26 +20,49 @@ abstract class AbstractEnum implements \JsonSerializable
      * Store existing constants in a static cache per object.
      * @var array
      */
-    private static $cache = array();
+    private static $values = [];
 
     /**
-     * Creates a new value of some type
-     * @param mixed $value
-     * @throws \UnexpectedValueException if incompatible type is given.
+     * Only one instance will exist per enum class and enum value.
+     * @var array
      */
-    public function __construct($value)
+    private static $instances = [];
+
+    /**
+     * private constructor to ensure flyweight construction.
+     * @param int|string $value
+     */
+    final private function __construct($value)
     {
-        $possibleValues = self::toArray();
-        if (!in_array($value, $possibleValues)) {
-            throw new \UnexpectedValueException("Value '$value' is not part of the enum " . get_called_class());
-        }
         $this->value = $value;
     }
 
     /**
-     * @return mixed
+     * @param string|int $value
+     * @return static
+     * @throws \UnexpectedValueException
      */
-    public function getValue()
+    final public static function create($value)
+    {
+        $key = get_called_class() . $value;
+
+        if (isset(self::$instances[$key])) {
+            return self::$instances[$key];
+        }
+
+        $values = static::values();
+        if (!in_array($value, $values)) {
+            throw new \UnexpectedValueException("Value '$value' is not part of the enum " . get_called_class());
+        }
+
+        self::$instances[$key] = new static($value);
+        return self::$instances[$key];
+    }
+
+    /**
+     * @return int|string
+     */
+    final public function getValue()
     {
         return $this->value;
     }
@@ -47,44 +70,57 @@ abstract class AbstractEnum implements \JsonSerializable
     /**
      * @return string
      */
-    public function __toString()
+    final public function __toString()
     {
         return (string) $this->value;
     }
 
     /**
-     * @return mixed
+     * @return int|string
      */
-    public function jsonSerialize()
+    final public function jsonSerialize()
     {
         return $this->value;
     }
 
     /**
-     * Returns all possible values as an array
-     * @return array Constant name in key, constant value in value
+     * Returns the names (or keys) of all of constants in the enum
+     *
+     * @return array
      */
-    public static function toArray()
+    final public static function keys()
     {
-        $calledClass = get_called_class();
-        if (!isset(self::$cache[$calledClass])) {
-            $reflection = new \ReflectionClass($calledClass);
-            self::$cache[$calledClass] = $reflection->getConstants();
+        return array_keys(static::values());
+    }
+
+    /**
+     * Return the names and values of all the constants in the enum
+     *
+     * @return array
+     */
+    final public static function values()
+    {
+        $class = get_called_class();
+
+        if (!isset(self::$values[$class])) {
+            self::$values[$class] = (new \ReflectionClass($class))->getConstants();
         }
-        return self::$cache[$calledClass];
+
+        return self::$values[$class];
     }
 
     /**
      * Returns a value when called statically like so: MyEnum::SOME_VALUE() given SOME_VALUE is a class constant
+     *
      * @param string $name
      * @param array  $arguments
      * @return static
      * @throws \BadMethodCallException
      */
-    public static function __callStatic($name, $arguments)
+    final public static function __callStatic($name, $arguments)
     {
         if (defined("static::$name")) {
-            return new static(constant("static::$name"));
+            return static::create(constant("static::$name"));
         }
         throw new \BadMethodCallException("No static method or enum constant '$name' in class " . get_called_class());
     }
