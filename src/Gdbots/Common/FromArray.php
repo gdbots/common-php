@@ -12,5 +12,5 @@ interface FromArray
      * @param array $data
      * @return self
      */
-    public static function fromArray(array $data = array());
+    public static function fromArray(array $data = []);
 }

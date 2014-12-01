@@ -110,6 +110,22 @@ abstract class AbstractEnum implements \JsonSerializable
     }
 
     /**
+     * Compares this enum (which has a value) to the value provided.  If the value
+     * is itself an AbstractEnum then strict object (===) equality is used, otherwise
+     * the value (int or string) is compared with ==.
+     *
+     * @param AbstractEnum|int|string $value
+     * @return bool
+     */
+    final public function equals($value)
+    {
+        if ($value instanceof AbstractEnum) {
+            return $this === $value;
+        }
+        return $this->value == $value;
+    }
+
+    /**
      * Returns a value when called statically like so: MyEnum::SOME_VALUE() given SOME_VALUE is a class constant
      *
      * @param string $name
