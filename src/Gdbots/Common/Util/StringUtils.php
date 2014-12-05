@@ -4,6 +4,8 @@ namespace Gdbots\Common\Util;
 
 class StringUtils
 {
+    // todo: memoize inflectors
+
     /**
      * Returns true if the provided string starts with a letter.
      *

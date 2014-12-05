@@ -6,23 +6,26 @@ class ClassUtils
 {
     /**
      * Keeps a static reference of all requests for a classes traits.
-     * They array key is the fully qualified class name and a flag for
+     * The array key is the fully qualified class name and a flag for
      * whether or not to do a deep scan (inherited classes) and autoload.
      *
      * @var array
      */
-    private static $classTraits = array();
+    private static $classTraits = [];
 
     /**
      * Returns an array of all the traits that a class is using.  This
      * includes all of the extended classes and traits by default.
+     *
+     * Stores the traits as ['MyTrait' => 1, 'MyOtherTrait' => 2]
+     * for optimal checking on the usesTrait method.
      *
      * @param string|object $class
      * @param bool $deep
      * @param bool $autoload
      * @return array
      */
-    public static function getTraits($class, $deep = true, $autoload = true)
+    private static function loadTraits($class, $deep = true, $autoload = true)
     {
         $cachKey = is_object($class) ? get_class($class) : (string) $class;
         $cachKey .= $deep ? ':deep' : '';
@@ -35,7 +38,7 @@ class ClassUtils
         $traits = class_uses($class, $autoload);
 
         if (false === $deep) {
-            self::$classTraits[$cachKey] = $traits;
+            self::$classTraits[$cachKey] = array_flip($traits);
             return $traits;
         }
 
@@ -47,8 +50,22 @@ class ClassUtils
             $traits = array_merge(class_uses($trait, $autoload), $traits);
         }
 
-        self::$classTraits[$cachKey] = array_unique($traits);
+        self::$classTraits[$cachKey] = array_flip(array_unique($traits));
         return self::$classTraits[$cachKey];
+    }
+
+    /**
+     * Returns an array of all the traits that a class is using.  This
+     * includes all of the extended classes and traits by default.
+     *
+     * @param string|object $class
+     * @param bool $deep
+     * @param bool $autoload
+     * @return array
+     */
+    public static function getTraits($class, $deep = true, $autoload = true)
+    {
+        return array_keys(self::loadTraits($class, $deep, $autoload));
     }
 
     /**
@@ -60,6 +77,6 @@ class ClassUtils
      */
     public static function usesTrait($class, $trait)
     {
-        return in_array($trait, self::getTraits($class));
+        return isset(self::loadTraits($class)[$trait]);
     }
 }

@@ -304,7 +304,7 @@ class URLUtils
      */
     public static function isUrl($string)
     {
-        return preg_match('/'.self::URL_MATCH.'/ix', $string);
+        return preg_match('/' . self::URL_MATCH . '/ix', $string);
     }
 
     /**
