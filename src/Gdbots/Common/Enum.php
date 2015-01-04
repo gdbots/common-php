@@ -8,7 +8,7 @@
 
 namespace Gdbots\Common;
 
-abstract class AbstractEnum implements \JsonSerializable
+abstract class Enum implements \JsonSerializable
 {
     /**
      * The value of the current enum.
@@ -111,16 +111,16 @@ abstract class AbstractEnum implements \JsonSerializable
 
     /**
      * Compares this enum (which has a value) to the value provided.  If the value
-     * is itself an AbstractEnum then strict object (===) equality is used, otherwise
-     * the value (int or string) is compared with ==.
+     * is itself an Enum then we'll get the value of the provided enum and compare
+     * it to our value.
      *
-     * @param AbstractEnum|int|string $value
+     * @param Enum|int|string $value
      * @return bool
      */
     final public function equals($value)
     {
-        if ($value instanceof AbstractEnum) {
-            return $this === $value;
+        if ($value instanceof Enum) {
+            return $this->value == $value->getValue();
         }
         return $this->value == $value;
     }
