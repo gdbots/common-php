@@ -14,7 +14,7 @@ class StringUtils
      */
     public static function startsWithLetter($str)
     {
-       return preg_match('/^[a-zA-Z]/', $str);
+        return preg_match('/^[a-zA-Z]/', $str);
     }
 
     /**
@@ -25,7 +25,7 @@ class StringUtils
      */
     public static function toSlugFromCamelCase($camelCase)
     {
-       return trim(strtolower(preg_replace('/([A-Z])/', '-$1', $camelCase)), '-');
+        return trim(strtolower(preg_replace('/([A-Z])/', '-$1', $camelCase)), '-');
     }
 
     /**
@@ -47,7 +47,7 @@ class StringUtils
      */
     public static function toSnakeCaseFromCamelCase($camelCase)
     {
-       return trim(strtolower(preg_replace('/([A-Z])/', '_$1', $camelCase)), '_');
+        return trim(strtolower(preg_replace('/([A-Z])/', '_$1', $camelCase)), '_');
     }
 
     /**
@@ -59,5 +59,43 @@ class StringUtils
     public static function toCamelCaseFromSnakeCase($snakeCase)
     {
         return str_replace(' ', '', ucwords(str_replace('_', ' ', $snakeCase)));
+    }
+
+    /**
+     * @param $var
+     * @return string
+     */
+    public static function varToString($var)
+    {
+        if (is_object($var)) {
+            return sprintf('Object(%s)', get_class($var));
+        }
+
+        if (is_array($var)) {
+            $a = array();
+            foreach ($var as $k => $v) {
+                $a[] = sprintf('%s => %s', $k, self::varToString($v));
+            }
+
+            return sprintf("Array(%s)", implode(', ', $a));
+        }
+
+        if (is_resource($var)) {
+            return sprintf('Resource(%s)', get_resource_type($var));
+        }
+
+        if (null === $var) {
+            return 'null';
+        }
+
+        if (false === $var) {
+            return 'false';
+        }
+
+        if (true === $var) {
+            return 'true';
+        }
+
+        return (string)$var;
     }
 }
