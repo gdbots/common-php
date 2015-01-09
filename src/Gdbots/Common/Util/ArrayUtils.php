@@ -10,7 +10,7 @@ class ArrayUtils
      * @param array $array
      * @return bool
      */
-    public static function isAssoc($array)
+    public static function isAssoc(array $array)
     {
         $keys = array_keys($array);
         // If the array keys of the keys match the keys, then the array must
