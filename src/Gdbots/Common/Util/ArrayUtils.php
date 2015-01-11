@@ -12,9 +12,6 @@ class ArrayUtils
      */
     public static function isAssoc(array $array)
     {
-        $keys = array_keys($array);
-        // If the array keys of the keys match the keys, then the array must
-        // not be associative (e.g. the keys array looked like {0:0, 1:1...}).
-        return array_keys($keys) !== $keys;
+        return array_keys($array) !== range(0, count($array) - 1);
     }
 }
