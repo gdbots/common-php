@@ -1,14 +1,16 @@
 {
-    "name": "gdbots/common-php",
-    "homepage": "https://github.com/gdbots/common-php",
-    "description": "Common classes for php projects.",
-    "type": "library",
-    "license": "MIT",
-    "require": {
-        "php": ">=5.4",
-        "moontoast/math": "~1.1"
-    },
-    "autoload": {
-        "psr-0": { "Gdbots\\Common\\": "src/" }
+  "name": "gdbots/common-php",
+  "homepage": "https://github.com/gdbots/common-php",
+  "description": "Common classes for php projects.",
+  "type": "library",
+  "license": "Apache-2.0",
+  "require": {
+    "php": ">=5.4",
+    "moontoast/math": "~1.1"
+  },
+  "autoload": {
+    "psr-0": {
+      "Gdbots\\Common\\": "src/"
     }
+  }
 }
