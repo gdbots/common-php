@@ -17,7 +17,7 @@ abstract class Enum implements \JsonSerializable
     protected $value;
 
     /**
-     * Store existing constants in a static cache per object.
+     * Store existing constant values in a static cache per object.
      * @var array
      */
     private static $values = [];
@@ -57,6 +57,18 @@ abstract class Enum implements \JsonSerializable
 
         self::$instances[$key] = new static($value);
         return self::$instances[$key];
+    }
+
+    /**
+     * Returns the name/key of the constant this enum value matches.  Note that this
+     * may not return the exact constant name you'd expect if you have multiple
+     * constants that share the same value.
+     *
+     * @return string
+     */
+    final public function getName()
+    {
+        return array_flip(static::values())[$this->value];
     }
 
     /**
