@@ -6,6 +6,7 @@ class DateUtils
 {
     /**
      * Returns true if it's a valid timestamp.
+     * todo: wtf is this?
      *
      * @param string $timestamp
      * @param bool $allowNegative
