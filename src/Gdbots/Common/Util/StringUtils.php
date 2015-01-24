@@ -4,7 +4,7 @@ namespace Gdbots\Common\Util;
 
 class StringUtils
 {
-    // todo: memoize inflectors
+    // todo: memoize inflectors and maybe move inflectors to own class
 
     /**
      * Returns true if the provided string starts with a letter.
@@ -20,12 +20,12 @@ class StringUtils
     /**
      * Converts a camelCase string to slug-i-fied style.
      *
-     * @param string $camelCase
+     * @param string $camel
      * @return string
      */
-    public static function toSlugFromCamelCase($camelCase)
+    public static function toSlugFromCamel($camel)
     {
-        return trim(strtolower(preg_replace('/([A-Z])/', '-$1', $camelCase)), '-');
+        return trim(strtolower(preg_replace('/([A-Z])/', '-$1', $camel)), '-');
     }
 
     /**
@@ -34,7 +34,7 @@ class StringUtils
      * @param string $slug
      * @return string
      */
-    public static function toCamelCaseFromSlug($slug)
+    public static function toCamelFromSlug($slug)
     {
         return str_replace(' ', '', ucwords(str_replace('-', ' ', $slug)));
     }
@@ -42,27 +42,27 @@ class StringUtils
     /**
      * Converts a camelCase string to snake_case style.
      *
-     * @param string $camelCase
+     * @param string $camel
      * @return string
      */
-    public static function toSnakeCaseFromCamelCase($camelCase)
+    public static function toSnakeFromCamel($camel)
     {
-        return trim(strtolower(preg_replace('/([A-Z])/', '_$1', $camelCase)), '_');
+        return trim(strtolower(preg_replace('/([A-Z])/', '_$1', $camel)), '_');
     }
 
     /**
      * Converts a snake_case string to camelCase style.
      *
-     * @param string $snakeCase
+     * @param string $snake
      * @return string
      */
-    public static function toCamelCaseFromSnakeCase($snakeCase)
+    public static function toCamelFromSnake($snake)
     {
-        return str_replace(' ', '', ucwords(str_replace('_', ' ', $snakeCase)));
+        return str_replace(' ', '', ucwords(str_replace('_', ' ', $snake)));
     }
 
     /**
-     * @param $var
+     * @param mixed $var
      * @return string
      */
     public static function varToString($var)
