@@ -100,7 +100,7 @@ final class Microtime implements \JsonSerializable
         }
 
         if ($len < 16) {
-            $int = str_pad($int, 16, '0');
+            $int = (int) str_pad($int, 16, '0');
         }
 
         $m = new self();
