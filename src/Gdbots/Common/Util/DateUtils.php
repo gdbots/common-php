@@ -5,6 +5,15 @@ namespace Gdbots\Common\Util;
 class DateUtils
 {
     /**
+     * This format differs from php's builtin @see \DateTime::ISO8601
+     * in that is uses "P" instead of "O" to ensure a colon in the
+     * gmt offset.
+     *
+     * @const string
+     */
+    const ISO8601 = 'Y-m-d\TH:i:s.uP';
+
+    /**
      * October 15, 1582 UTC
      * @const int
      */
