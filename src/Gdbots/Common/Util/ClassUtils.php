@@ -79,4 +79,27 @@ class ClassUtils
     {
         return isset(self::loadTraits($class)[$trait]);
     }
+
+    /**
+     * Returns the class name of an object, without the namespace
+     *
+     * @param object|string $objectOrString
+     * @return string
+     */
+    public static function getShortName($objectOrString)
+    {
+        $parts = explode('\\', is_object($objectOrString) ? get_class($objectOrString) : $objectOrString);
+        return end($parts);
+    }
+
+    /**
+     * Returns an array of CONSTANT_NAME => value for a given class
+     *
+     * @param string $className
+     * @return array
+     */
+    public static function getConstants($className)
+    {
+        return (new \ReflectionClass($className))->getConstants();
+    }
 }
