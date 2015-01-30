@@ -37,17 +37,17 @@ final class GeoPoint implements FromArray, ToArray, \JsonSerializable
     /**
      * @return float
      */
-    public function getLatitude()
+    public function getLongitude()
     {
-        return $this->latitude;
+        return $this->longitude;
     }
 
     /**
      * @return float
      */
-    public function getLongitude()
+    public function getLatitude()
     {
-        return $this->longitude;
+        return $this->latitude;
     }
 
     /**
