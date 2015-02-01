@@ -40,4 +40,24 @@ class DateUtils
             && ($timestamp <= PHP_INT_MAX)
             && ($timestamp >= 0);
     }
+
+    /**
+     * Returns true if the provided string is a valid ISO8601
+     * formatted date-time.
+     *
+     * @param string $string
+     * @return bool
+     */
+    public static function isValidISO8601Date($string)
+    {
+        if (\DateTime::createFromFormat(DateUtils::ISO8601, $string)) {
+            return true;
+        }
+
+        if (\DateTime::createFromFormat(\DateTime::ISO8601, $string)) {
+            return true;
+        }
+
+        return false;
+    }
 }

@@ -13,4 +13,16 @@ class DateUtilsTest extends \PHPUnit_Framework_TestCase
         $actual = $date->format(DateUtils::ISO8601);
         $this->assertSame($expected, $actual);
     }
+
+    public function testIsValidISO8601Date()
+    {
+        $this->assertTrue(DateUtils::isValidISO8601Date('2012-12-14T20:24:01.123456+00:00'));
+        $this->assertTrue(DateUtils::isValidISO8601Date('2012-12-14T20:24:01+00:00'));
+        $this->assertTrue(DateUtils::isValidISO8601Date('2012-12-14T20:24:01.123456Z'));
+        $this->assertTrue(DateUtils::isValidISO8601Date('2012-12-14T20:24:01Z'));
+
+        $this->assertFalse(DateUtils::isValidISO8601Date('2012-12-14T20:24:01.123456+00:00AA'));
+        $this->assertFalse(DateUtils::isValidISO8601Date('2012-12-14T20:24:0100:00'));
+        $this->assertFalse(DateUtils::isValidISO8601Date('2012-12-14T20:24:01.123456'));
+    }
 }
