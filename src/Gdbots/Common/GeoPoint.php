@@ -9,37 +9,29 @@ namespace Gdbots\Common;
 final class GeoPoint implements FromArray, ToArray, \JsonSerializable
 {
     /** @var float */
-    private $longitude;
-
-    /** @var float */
     private $latitude;
 
+    /** @var float */
+    private $longitude;
+
     /**
-     * @param float $lon
      * @param float $lat
+     * @param float $lon
      *
      * @throws \InvalidArgumentException
      */
-    public function __construct($lon, $lat)
+    public function __construct($lat, $lon)
     {
-        $this->longitude = (float) $lon;
         $this->latitude = (float) $lat;
-
-        if ($this->longitude > 180.0 || $this->longitude < -180.0) {
-            throw new \InvalidArgumentException('Longitude must be within range [-180.0, 180.0]');
-        }
+        $this->longitude = (float) $lon;
 
         if ($this->latitude > 90.0 || $this->latitude < -90.0) {
             throw new \InvalidArgumentException('Latitude must be within range [-90.0, 90.0]');
         }
-    }
 
-    /**
-     * @return float
-     */
-    public function getLongitude()
-    {
-        return $this->longitude;
+        if ($this->longitude > 180.0 || $this->longitude < -180.0) {
+            throw new \InvalidArgumentException('Longitude must be within range [-180.0, 180.0]');
+        }
     }
 
     /**
@@ -51,12 +43,20 @@ final class GeoPoint implements FromArray, ToArray, \JsonSerializable
     }
 
     /**
+     * @return float
+     */
+    public function getLongitude()
+    {
+        return $this->longitude;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function fromArray(array $data = [])
     {
         if (isset($data['coordinates'])) {
-            return new self($data['coordinates'][0], $data['coordinates'][1]);
+            return new self($data['coordinates'][1], $data['coordinates'][0]);
         }
         throw new \InvalidArgumentException('Payload must be a GeoJson "Point" type.');
     }
@@ -75,5 +75,31 @@ final class GeoPoint implements FromArray, ToArray, \JsonSerializable
     public function jsonSerialize()
     {
         return $this->toArray();
+    }
+
+    /**
+     * @param string $string A string with format lat,long
+     * @return self
+     */
+    public static function fromString($string)
+    {
+        list($lat, $long) = explode(',', $string);
+        return new self($lat, $long);
+    }
+
+    /**
+     * @return string
+     */
+    public function toString()
+    {
+        return $this->latitude . ',' . $this->longitude;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->toString();
     }
 }
