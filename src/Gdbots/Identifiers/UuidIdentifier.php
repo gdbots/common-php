@@ -62,6 +62,6 @@ class UuidIdentifier implements Identifier, GeneratesIdentifier, \JsonSerializab
      */
     final public function equals(Identifier $other)
     {
-        return $this->toString() === $other->toString();
+        return $this == $other;
     }
 }

@@ -65,6 +65,6 @@ abstract class StringIdentifier implements Identifier, \JsonSerializable
      */
     final public function equals(Identifier $other)
     {
-        return $this->toString() === $other->toString();
+        return $this == $other;
     }
 }
