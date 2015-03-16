@@ -30,6 +30,7 @@ abstract class StringIdentifier implements Identifier, \JsonSerializable
 
     /**
      * {@inheritdoc}
+     * @return static
      */
     final public static function fromString($string)
     {

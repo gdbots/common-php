@@ -23,6 +23,7 @@ class TimeUuidIdentifier extends UuidIdentifier
 
     /**
      * {@inheritdoc}
+     * @return static
      */
     public static function generate()
     {
