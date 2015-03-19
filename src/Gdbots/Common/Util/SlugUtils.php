@@ -14,7 +14,7 @@ final class SlugUtils
      * @param bool $allowSlashes
      * @return string
      */
-    public static function createSlug($string, $allowSlashes = false)
+    public static function create($string, $allowSlashes = false)
     {
         $slug = '';
         $string = html_entity_decode($string, ENT_QUOTES);
@@ -159,19 +159,19 @@ final class SlugUtils
     public static function humanize($slug)
     {
         $str = str_replace('-', ' ', $slug);
-        $words  = explode(' ', $str);
-        $words  = array_map('ucfirst', $words);
+        $words = explode(' ', $str);
+        $words = array_map('ucfirst', $words);
         return implode(' ', $words);
     }
 
     /**
      * @param string $string
-     * @param bool $withSlash
+     * @param bool $allowSlashes
      * @return bool
      */
-    public static function isValid($string, $withSlash = true)
+    public static function isValid($string, $allowSlashes = false)
     {
-        $match = $withSlash ? self::VALID_DATED_SLUG_PATTERN : self::VALID_SLUG_PATTERN;
+        $match = $allowSlashes ? self::VALID_DATED_SLUG_PATTERN : self::VALID_SLUG_PATTERN;
         return preg_match($match, $string) > 0;
     }
 
@@ -180,9 +180,9 @@ final class SlugUtils
      * @param bool $allowSlashes
      * @return string
      */
-    public static function createFromCamelCase($string, $allowSlashes = false)
+    public static function createFromCamel($string, $allowSlashes = false)
     {
         $string = trim(preg_replace('/(([A-Z]|[0-9])[^A-Z])/', ' $1', $string));
-        return self::createSlug($string, $allowSlashes);
+        return self::create($string, $allowSlashes);
     }
 }
