@@ -28,6 +28,11 @@ namespace Gdbots\Common\Util;
 final class HashtagUtils
 {
     /**
+     * Private constructor. This class is not meant to be instantiated.
+     */
+    private function __construct() {}
+
+    /**
      * Converts special chars to more url friendly versions.
      *
      * @param $str

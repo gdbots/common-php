@@ -8,6 +8,11 @@ final class SlugUtils
     const VALID_DATED_SLUG_PATTERN = '/^([a-z0-9-]|[a-z0-9-][a-z0-9-\/]*[a-z0-9-])$/';
 
     /**
+     * Private constructor. This class is not meant to be instantiated.
+     */
+    private function __construct() {}
+
+    /**
      * Creates a slug from the text given.
      *
      * @param string $string

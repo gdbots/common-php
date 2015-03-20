@@ -2,7 +2,7 @@
 
 namespace Gdbots\Common\Util;
 
-class ClassUtils
+final class ClassUtils
 {
     /**
      * Keeps a static reference of all requests for a classes traits.
@@ -12,6 +12,11 @@ class ClassUtils
      * @var array
      */
     private static $classTraits = [];
+
+    /**
+     * Private constructor. This class is not meant to be instantiated.
+     */
+    private function __construct() {}
 
     /**
      * Returns an array of all the traits that a class is using.  This

@@ -2,7 +2,7 @@
 
 namespace Gdbots\Common\Util;
 
-class DateUtils
+final class DateUtils
 {
     /**
      * This format differs from php's builtin @see \DateTime::ISO8601
@@ -18,6 +18,11 @@ class DateUtils
      * @const int
      */
     const MIN_UTC_TIME = -12219292800;
+
+    /**
+     * Private constructor. This class is not meant to be instantiated.
+     */
+    private function __construct() {}
 
     /**
      * Returns true if it's a valid timestamp.
