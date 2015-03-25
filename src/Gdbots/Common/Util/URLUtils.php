@@ -2,7 +2,7 @@
 
 namespace Gdbots\Common\Util;
 
-class URLUtils
+final class URLUtils
 {
     // REGEX FROM: http://immike.net/blog/2007/04/06/5-regular-expressions-every-web-programmer-should-know/
     // UPDATED ON 5-21-2010 FROM: http://data.iana.org/TLD/tlds-alpha-by-domain.txt
@@ -294,6 +294,11 @@ class URLUtils
                   [\.!,?]+ [^?;\"<>\[\]\{\}\s\x7F-\xFF]+
             )*
           )?";
+
+    /**
+     * Private constructor. This class is not meant to be instantiated.
+     */
+    private function __construct() {}
 
     /**
      * Determines if $string is a URL

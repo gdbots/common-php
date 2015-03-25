@@ -2,9 +2,14 @@
 
 namespace Gdbots\Common\Util;
 
-class StringUtils
+final class StringUtils
 {
     // todo: memoize inflectors and maybe move inflectors to own class
+
+    /**
+     * Private constructor. This class is not meant to be instantiated.
+     */
+    private function __construct() {}
 
     /**
      * Returns true if the provided string starts with a letter.

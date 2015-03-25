@@ -5,7 +5,7 @@ namespace Gdbots\Identifiers;
 interface GeneratesIdentifier
 {
     /**
-     * @return Identifier
+     * @return static
      */
     public static function generate();
 }

@@ -2,30 +2,42 @@
 
 namespace Gdbots\Identifiers;
 
+use Gdbots\Common\Util\SlugUtils;
 use Gdbots\Common\Util\StringUtils;
 
-abstract class StringIdentifier implements Identifier, \JsonSerializable
+abstract class SlugIdentifier implements Identifier, \JsonSerializable
 {
     /** @var string */
-    private $string;
+    private $slug;
 
     /**
-     * @param string $string
+     * @param string $slug
      * @throws \InvalidArgumentException
      */
-    protected function __construct($string)
+    protected function __construct($slug)
     {
-        if (!is_string($string)) {
+        if (!is_string($slug)) {
             throw new \InvalidArgumentException(
-                sprintf('String expected but got [%s].', StringUtils::varToString($string))
+                sprintf('String expected but got [%s].', StringUtils::varToString($slug))
             );
         }
 
-        $this->string = trim((string) $string);
-
-        if (empty($this->string)) {
-            throw new \InvalidArgumentException('String cannot be empty.');
+        if (!SlugUtils::isValid($slug)) {
+            throw new \InvalidArgumentException(
+                sprintf('The value [%s] is not a valid slug.', $slug)
+            );
         }
+
+        $this->slug = $slug;
+    }
+
+    /**
+     * @param string $string
+     * @return static
+     */
+    public static function create($string)
+    {
+        return new static(SlugUtils::create($string));
     }
 
     /**
@@ -42,7 +54,7 @@ abstract class StringIdentifier implements Identifier, \JsonSerializable
      */
     final public function toString()
     {
-        return $this->string;
+        return $this->slug;
     }
 
     /**

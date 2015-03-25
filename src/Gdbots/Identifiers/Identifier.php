@@ -8,7 +8,7 @@ interface Identifier
      * Creates an identifier object from a string representation
      *
      * @param string $string
-     * @return Identifier
+     * @return static
      * @throws \InvalidArgumentException
      */
     public static function fromString($string);

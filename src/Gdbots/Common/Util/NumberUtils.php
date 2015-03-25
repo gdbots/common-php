@@ -2,8 +2,13 @@
 
 namespace Gdbots\Common\Util;
 
-class NumberUtils
+final class NumberUtils
 {
+    /**
+     * Private constructor. This class is not meant to be instantiated.
+     */
+    private function __construct() {}
+
     /**
      * Returns an integer within a boundary.
      *

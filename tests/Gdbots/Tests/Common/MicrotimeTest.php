@@ -76,9 +76,9 @@ class MicrotimeTest extends \PHPUnit_Framework_TestCase
         $microtime = microtime(true);
         list($sec, $usec) = explode('.', $microtime);
         $usec = str_pad($usec, 6, '0');
-        $date = new \DateTime('@' . $sec);
+        $date = new \DateTime(date('Y-m-d H:i:s.' . $usec, $sec));
         $m = Microtime::fromString($sec . $usec);
-        $this->assertSame($date->format('U'), $m->toDateTime()->format('U'));
+        $this->assertSame($date->format('Y-m-d H:i:s.u'), $m->toDateTime()->format('Y-m-d H:i:s.u'));
     }
 
     /**

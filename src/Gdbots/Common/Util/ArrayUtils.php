@@ -2,8 +2,13 @@
 
 namespace Gdbots\Common\Util;
 
-class ArrayUtils
+final class ArrayUtils
 {
+    /**
+     * Private constructor. This class is not meant to be instantiated.
+     */
+    private function __construct() {}
+
     /**
      * Returns true if the array is associative
      *

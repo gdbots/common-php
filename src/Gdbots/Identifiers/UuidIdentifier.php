@@ -19,6 +19,7 @@ class UuidIdentifier implements Identifier, GeneratesIdentifier, \JsonSerializab
 
     /**
      * {@inheritdoc}
+     * @return static
      */
     public static function generate()
     {
@@ -27,6 +28,7 @@ class UuidIdentifier implements Identifier, GeneratesIdentifier, \JsonSerializab
 
     /**
      * {@inheritdoc}
+     * @return static
      */
     final public static function fromString($string)
     {
@@ -62,6 +64,6 @@ class UuidIdentifier implements Identifier, GeneratesIdentifier, \JsonSerializab
      */
     final public function equals(Identifier $other)
     {
-        return $this->toString() === $other->toString();
+        return $this == $other;
     }
 }
