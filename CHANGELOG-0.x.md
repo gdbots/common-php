@@ -2,6 +2,10 @@
 This changelog references the relevant changes done in 0.x versions.
 
 
+## v0.1.2
+* Rename composer package to `gdbots/common`.
+
+
 ## v0.1.1
 * [GeneratesIdentifier], [Identifier] Return `static` on phpdoc for better IDE support.
 * bug [StringIdentifier], [UuidIdentifier] Equals method to use `==` instead of comparing strings as those don't taken into account different types/classes.

@@ -1,6 +1,5 @@
 {
-  "name": "gdbots/common-php",
-  "homepage": "https://github.com/gdbots/common-php",
+  "name": "gdbots/common",
   "description": "Common classes for php projects.",
   "type": "library",
   "license": "Apache-2.0",
@@ -23,5 +22,8 @@
       "Gdbots\\Common\\": "src/",
       "Gdbots\\Identifiers\\": "src/"
     }
+  },
+  "replace": {
+    "gdbots/common-php": "self.version"
   }
 }
