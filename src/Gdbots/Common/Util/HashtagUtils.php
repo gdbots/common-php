@@ -69,6 +69,7 @@ final class HashtagUtils
         $str = str_replace($find, $repl, $str);
 
         // replace everything else and split up the words
+        $str = preg_replace('/[^a-zA-Z0-9_]/', ':', $str);
         if ($camelize) {
             $str = strtolower(preg_replace('/([A-Z])/', ':$1', $str));
             $str = str_replace(' ', '', ucwords(str_replace(':', ' ', $str)));
