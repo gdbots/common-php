@@ -2,6 +2,10 @@
 This changelog references the relevant changes done in 0.x versions.
 
 
+## v0.1.3
+* [HashtagUtils] Fix bug where generated hashtag might contain invalid chars.
+
+
 ## v0.1.2
 * Rename composer package to `gdbots/common`.
 
