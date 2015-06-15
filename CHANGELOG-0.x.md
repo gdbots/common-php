@@ -3,7 +3,6 @@ This changelog references the relevant changes done in 0.x versions.
 
 
 ## v0.1.4
-* Added [Gdbots\UriTemplate] package.
 * Added `toSnakeFromSlug` and `toSlugFromSnake` to [StringUtils].
 * Using psr4 to load `src` and `tests` now.
 
