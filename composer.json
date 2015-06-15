@@ -10,7 +10,8 @@
     "rhumsaa/uuid": "~2.8"
   },
   "require-dev": {
-    "phpunit/phpunit": "~4.3"
+    "phpunit/phpunit": "~4.3",
+    "guzzle/guzzle": "3.7.1"
   },
   "extra": {
     "branch-alias": {
@@ -18,9 +19,13 @@
     }
   },
   "autoload": {
-    "psr-0": {
-      "Gdbots\\Common\\": "src/",
-      "Gdbots\\Identifiers\\": "src/"
+    "psr-4": {
+      "Gdbots\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Gdbots\\Tests\\": "tests"
     }
   },
   "replace": {

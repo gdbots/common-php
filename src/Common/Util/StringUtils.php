@@ -67,6 +67,28 @@ final class StringUtils
     }
 
     /**
+     * Converts a slug-case string to snake_case style.
+     *
+     * @param string $slug
+     * @return string
+     */
+    public static function toSnakeFromSlug($slug)
+    {
+        return str_replace('-', '_', $slug);
+    }
+
+    /**
+     * Converts a snake_case string to slug-case style.
+     *
+     * @param string $snake
+     * @return string
+     */
+    public static function toSlugFromSnake($snake)
+    {
+        return str_replace('_', '-', $snake);
+    }
+
+    /**
      * Converts the input supplied to a safe xml version that can be included in
      * xml attributes and nodes without the use of CDATA.
      *
