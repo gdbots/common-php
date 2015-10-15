@@ -99,12 +99,14 @@ final class StringUtils
     {
         // array used to figure what number to decrement from character order value
         // according to number of characters used to map unicode to ascii by utf-8
+        $decrement = [];
         $decrement[4] = 240;
         $decrement[3] = 224;
         $decrement[2] = 192;
         $decrement[1] = 0;
 
         // the number of bits to shift each charNum by
+        $shift = [];
         $shift[1][0] = 0;
         $shift[2][0] = 6;
         $shift[2][1] = 0;
