@@ -7,7 +7,7 @@ This changelog references the relevant changes done in 0.x versions.
 
 
 ## v0.1.5
-* [Microtime] Ensure `toDateTime` returns a DateTime object in UTC regardless of php config. (BUG
+* [Microtime] Ensure `toDateTime` returns a DateTime object in UTC regardless of php config.
 
 
 ## v0.1.4
