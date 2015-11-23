@@ -2,6 +2,10 @@
 This changelog references the relevant changes done in 0.x versions.
 
 
+## v0.1.5
+* [Microtime] Ensure `toDateTime` returns a DateTime object in UTC regardless of php config.
+
+
 ## v0.1.4
 * Added `toSnakeFromSlug` and `toSlugFromSnake` to [StringUtils].
 * Using psr4 to load `src` and `tests` now.

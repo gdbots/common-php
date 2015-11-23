@@ -61,7 +61,6 @@ class MicrotimeTest extends \PHPUnit_Framework_TestCase
             $usec = str_repeat('1', $i);
             $usecFixed = (int) str_pad($usec, 6, '0');
             $str = $sec . $usecFixed;
-
             $m = Microtime::fromString($sec . $usec);
             $this->assertSame($sec, $m->getSeconds());
             $this->assertSame($sec, (int) $m->toDateTime()->format('U'));
@@ -76,9 +75,21 @@ class MicrotimeTest extends \PHPUnit_Framework_TestCase
         $microtime = microtime(true);
         list($sec, $usec) = explode('.', $microtime);
         $usec = str_pad($usec, 6, '0');
-        $date = new \DateTime(date('Y-m-d H:i:s.' . $usec, $sec));
+        $date = \DateTime::createFromFormat('U.u', $sec . '.' . $usec);
         $m = Microtime::fromString($sec . $usec);
         $this->assertSame($date->format('Y-m-d H:i:s.u'), $m->toDateTime()->format('Y-m-d H:i:s.u'));
+    }
+
+    public function testDateTimeComparison()
+    {
+        $microtime = microtime(true);
+        list($sec, $usec) = explode('.', $microtime);
+        $usec = str_pad($usec, 6, '0');
+        $date = \DateTime::createFromFormat('U.u', $sec . '.' . $usec);
+        $m = Microtime::fromString($sec . $usec);
+        $this->assertSame($date->format('Y-m-d H:i:s.u'), $m->toDateTime()->format('Y-m-d H:i:s.u'));
+        $this->assertEquals($date, $m->toDateTime());
+        $this->assertEquals($m->toDateTime()->getOffset(), (new \DateTime('UTC'))->getOffset());
     }
 
     /**

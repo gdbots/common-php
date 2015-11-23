@@ -155,7 +155,7 @@ final class Microtime implements \JsonSerializable
      */
     public function toDateTime()
     {
-        return new \DateTime(date('Y-m-d H:i:s.' . str_pad($this->usec, 6, '0', STR_PAD_LEFT), $this->sec));
+        return \DateTime::createFromFormat('U.u', $this->sec . '.' . str_pad($this->usec, 6, '0', STR_PAD_LEFT));
     }
 
     /**
