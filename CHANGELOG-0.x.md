@@ -2,8 +2,12 @@
 This changelog references the relevant changes done in 0.x versions.
 
 
+## v0.1.6
+* BUG: Do not use v0.1.5.  Scrutinr recommended fix (unused argument on Enum) created fatal error.
+
+
 ## v0.1.5
-* [Microtime] Ensure `toDateTime` returns a DateTime object in UTC regardless of php config.
+* [Microtime] Ensure `toDateTime` returns a DateTime object in UTC regardless of php config. (BUG
 
 
 ## v0.1.4
