@@ -2,15 +2,16 @@
 
 namespace Gdbots\Identifiers;
 
-use Rhumsaa\Uuid\Uuid;
+use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 
 class TimeUuidIdentifier extends UuidIdentifier
 {
     /**
-     * @param Uuid $uuid
+     * @param UuidInterface $uuid
      * @throws \InvalidArgumentException
      */
-    protected function __construct(Uuid $uuid)
+    protected function __construct(UuidInterface $uuid)
     {
         parent::__construct($uuid);
         $version = $uuid->getVersion();

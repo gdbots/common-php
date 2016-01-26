@@ -3,7 +3,7 @@
 namespace Gdbots\Tests\Identifiers;
 
 use Gdbots\Identifiers\TimeUuidIdentifier;
-use Rhumsaa\Uuid\Uuid;
+use Ramsey\Uuid\Uuid;
 
 class TimeUuidIdentifierTest extends \PHPUnit_Framework_TestCase
 {

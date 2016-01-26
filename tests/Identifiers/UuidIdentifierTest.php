@@ -3,7 +3,7 @@
 namespace Gdbots\Tests\Identifiers;
 
 use Gdbots\Identifiers\UuidIdentifier;
-use Rhumsaa\Uuid\Uuid;
+use Ramsey\Uuid\Uuid;
 
 class UuidIdentifierTest extends \PHPUnit_Framework_TestCase
 {
