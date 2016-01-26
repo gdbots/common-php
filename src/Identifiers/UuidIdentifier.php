@@ -2,17 +2,18 @@
 
 namespace Gdbots\Identifiers;
 
-use Rhumsaa\Uuid\Uuid;
+use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 
 class UuidIdentifier implements Identifier, GeneratesIdentifier, \JsonSerializable
 {
-    /** @var Uuid */
+    /** @var UuidInterface */
     private $uuid;
 
     /**
-     * @param Uuid $uuid
+     * @param UuidInterface $uuid
      */
-    protected function __construct(Uuid $uuid)
+    protected function __construct(UuidInterface $uuid)
     {
         $this->uuid = $uuid;
     }

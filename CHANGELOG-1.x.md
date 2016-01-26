@@ -7,4 +7,4 @@ __BREAKING CHANGES__
 
 * Requires php >=5.6.
 * Uuid lib `rhumsaa/uuid` replaced with `ramsey/uuid`,same author, different package name.
-* DateUtils now uses Zulu time format.
+* DateUtils now uses Zulu time format (the old IS8601 with offset will still validate).

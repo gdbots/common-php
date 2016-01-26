@@ -5,6 +5,12 @@ namespace Gdbots\Common\Util;
 final class DateUtils
 {
     /**
+     * @link https://en.wikipedia.org/wiki/ISO_8601 (ref Zulu)
+     * @const string
+     */
+    const UTC_ZULU = 'Y-m-d\TH:i:s.u\Z';
+
+    /**
      * This format differs from php's builtin @see \DateTime::ISO8601
      * in that is uses "P" instead of "O" to ensure a colon in the
      * gmt offset.
@@ -55,10 +61,15 @@ final class DateUtils
      */
     public static function isValidISO8601Date($string)
     {
+        if (\DateTime::createFromFormat(DateUtils::UTC_ZULU, $string)) {
+            return true;
+        }
+
         if (\DateTime::createFromFormat(DateUtils::ISO8601, $string)) {
             return true;
         }
 
+        // this is php's date time UTC format
         if (\DateTime::createFromFormat(\DateTime::ISO8601, $string)) {
             return true;
         }
