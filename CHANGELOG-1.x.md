@@ -8,3 +8,4 @@ __BREAKING CHANGES__
 * Requires php >=5.6.
 * Uuid lib `rhumsaa/uuid` replaced with `ramsey/uuid`,same author, different package name.
 * `Gdbots\Common\Util\DateUtils` now uses Zulu time format (the old IS08601 with offset will still validate).
+* issue #5: Better ISO8601 format detection.
