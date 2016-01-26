@@ -1,5 +1,5 @@
-# CHANGELOG for 0.x
-This changelog references the relevant changes done in 0.x versions.
+# CHANGELOG for 1.x
+This changelog references the relevant changes done in 1.x versions.
 
 
 ## v1.0.0
