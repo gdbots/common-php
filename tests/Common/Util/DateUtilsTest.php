@@ -9,8 +9,8 @@ class DateUtilsTest extends \PHPUnit_Framework_TestCase
     public function testUtcZuluWithMicroseconds()
     {
         $expected = '2012-12-14T20:24:01.123456Z';
-        $date = \DateTime::createFromFormat(DateUtils::UTC_ZULU, $expected);
-        $actual = $date->format(DateUtils::UTC_ZULU);
+        $date = \DateTime::createFromFormat(DateUtils::ISO8601_ZULU, $expected);
+        $actual = $date->format(DateUtils::ISO8601_ZULU);
         $this->assertSame($expected, $actual);
     }
 

@@ -5,10 +5,10 @@ namespace Gdbots\Common\Util;
 final class DateUtils
 {
     /**
-     * @link https://en.wikipedia.org/wiki/ISO_8601 (ref Zulu)
+     * @link https://en.wikipedia.org/wiki/ISO_8601
      * @const string
      */
-    const UTC_ZULU = 'Y-m-d\TH:i:s.u\Z';
+    const ISO8601_ZULU = 'Y-m-d\TH:i:s.u\Z';
 
     /**
      * This format differs from php's builtin @see \DateTime::ISO8601
@@ -61,7 +61,7 @@ final class DateUtils
      */
     public static function isValidISO8601Date($string)
     {
-        if (\DateTime::createFromFormat(DateUtils::UTC_ZULU, $string)) {
+        if (\DateTime::createFromFormat(DateUtils::ISO8601_ZULU, $string)) {
             return true;
         }
 
