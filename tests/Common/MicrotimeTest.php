@@ -78,6 +78,10 @@ class MicrotimeTest extends \PHPUnit_Framework_TestCase
         $date = \DateTime::createFromFormat('U.u', $sec . '.' . $usec);
         $m = Microtime::fromString($sec . $usec);
         $this->assertSame($date->format('Y-m-d H:i:s.u'), $m->toDateTime()->format('Y-m-d H:i:s.u'));
+        $this->assertSame(
+            Microtime::fromDateTime($date)->toDateTime()->format('Y-m-d H:i:s.u'),
+            $m->toDateTime()->format('Y-m-d H:i:s.u')
+        );
     }
 
     public function testDateTimeComparison()

@@ -7,7 +7,7 @@ use Gdbots\Common\Util\StringUtils;
 abstract class StringIdentifier implements Identifier, \JsonSerializable
 {
     /** @var string */
-    private $string;
+    protected $string;
 
     /**
      * @param string $string
@@ -32,7 +32,7 @@ abstract class StringIdentifier implements Identifier, \JsonSerializable
      * {@inheritdoc}
      * @return static
      */
-    final public static function fromString($string)
+    public static function fromString($string)
     {
         return new static($string);
     }
@@ -40,7 +40,7 @@ abstract class StringIdentifier implements Identifier, \JsonSerializable
     /**
      * {@inheritdoc}
      */
-    final public function toString()
+    public function toString()
     {
         return $this->string;
     }
@@ -48,7 +48,7 @@ abstract class StringIdentifier implements Identifier, \JsonSerializable
     /**
      * {@inheritdoc}
      */
-    final public function __toString()
+    public function __toString()
     {
         return $this->toString();
     }
@@ -56,7 +56,7 @@ abstract class StringIdentifier implements Identifier, \JsonSerializable
     /**
      * {@inheritdoc}
      */
-    final public function jsonSerialize()
+    public function jsonSerialize()
     {
         return $this->toString();
     }
@@ -64,7 +64,7 @@ abstract class StringIdentifier implements Identifier, \JsonSerializable
     /**
      * {@inheritdoc}
      */
-    final public function equals(Identifier $other)
+    public function equals(Identifier $other)
     {
         return $this == $other;
     }

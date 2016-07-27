@@ -8,7 +8,7 @@ use Ramsey\Uuid\UuidInterface;
 class UuidIdentifier implements Identifier, GeneratesIdentifier, \JsonSerializable
 {
     /** @var UuidInterface */
-    private $uuid;
+    protected $uuid;
 
     /**
      * @param UuidInterface $uuid
@@ -31,7 +31,7 @@ class UuidIdentifier implements Identifier, GeneratesIdentifier, \JsonSerializab
      * {@inheritdoc}
      * @return static
      */
-    final public static function fromString($string)
+    public static function fromString($string)
     {
         return new static(Uuid::fromString($string));
     }
@@ -39,7 +39,7 @@ class UuidIdentifier implements Identifier, GeneratesIdentifier, \JsonSerializab
     /**
      * {@inheritdoc}
      */
-    final public function toString()
+    public function toString()
     {
         return $this->uuid->toString();
     }
@@ -47,7 +47,7 @@ class UuidIdentifier implements Identifier, GeneratesIdentifier, \JsonSerializab
     /**
      * {@inheritdoc}
      */
-    final public function __toString()
+    public function __toString()
     {
         return $this->toString();
     }
@@ -55,7 +55,7 @@ class UuidIdentifier implements Identifier, GeneratesIdentifier, \JsonSerializab
     /**
      * {@inheritdoc}
      */
-    final public function jsonSerialize()
+    public function jsonSerialize()
     {
         return $this->toString();
     }
@@ -63,7 +63,7 @@ class UuidIdentifier implements Identifier, GeneratesIdentifier, \JsonSerializab
     /**
      * {@inheritdoc}
      */
-    final public function equals(Identifier $other)
+    public function equals(Identifier $other)
     {
         return $this == $other;
     }

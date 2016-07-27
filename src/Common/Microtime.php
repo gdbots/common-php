@@ -4,10 +4,14 @@ namespace Gdbots\Common;
 
 /**
  * Value object for microtime with methods to convert to and from integers.
+ * Note that this is a unix timestamp __WITH__ microseconds but stored
+ * as an integer NOT a float.
+ *
+ * 10 digits (unix timestamp) concatenated with 6 microsecond digits.
  *
  * @link http://php.net/manual/en/function.microtime.php
  */
-final class Microtime implements \JsonSerializable
+class Microtime implements \JsonSerializable
 {
     /**
      * The microtime is stored as a 16 digit integer.
@@ -107,6 +111,23 @@ final class Microtime implements \JsonSerializable
         $m->int = $int;
         $m->sec = (int) substr($int, 0, 10);
         $m->usec = (int) substr($int, -6);
+        return $m;
+    }
+
+    /**
+     * Creates a new microtime from a \DateTime object using
+     * it's timestamp and microseconds.
+     *
+     * @param \DateTime $date
+     * @return self
+     */
+    public static function fromDateTime(\DateTime $date)
+    {
+        $str = $date->format('U') . str_pad($date->format('u'), 6, '0');
+        $m = new self();
+        $m->int = (int) $str;
+        $m->sec = (int) substr($str, 0, 10);
+        $m->usec = (int) substr($str, -6);
         return $m;
     }
 
