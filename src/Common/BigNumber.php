@@ -2,7 +2,7 @@
 
 namespace Gdbots\Common;
 
-final class BigNumber extends \Moontoast\Math\BigNumber implements \JsonSerializable
+class BigNumber extends \Moontoast\Math\BigNumber implements \JsonSerializable
 {
     /**
      * @return string

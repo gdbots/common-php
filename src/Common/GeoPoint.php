@@ -6,7 +6,7 @@ namespace Gdbots\Common;
  * Represents a GeoJson Point value.
  * @link http://geojson.org/geojson-spec.html#point
  */
-final class GeoPoint implements FromArray, ToArray, \JsonSerializable
+class GeoPoint implements FromArray, ToArray, \JsonSerializable
 {
     /** @var float */
     private $latitude;
