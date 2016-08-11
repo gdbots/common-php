@@ -2,6 +2,16 @@
 This changelog references the relevant changes done in 1.x versions.
 
 
+## v1.0.2
+* Marked these classes as deprecated as they will be removed in 2.x.
+  * BigNumber
+  * GeoPoint
+  * Microtime
+  * Identifiers\*
+* Moved `ext-bcmath`, `moontoast/math`, `ramsey/uuid` in `composer.json` to __require-dev__.  
+  If you're not on `gdbots/pbj-php` 1.1.x or later you'll need to require these in your own project.
+
+
 ## v1.0.1
 * Remove __final__ from classes in anticipation of moving to "WellKnown" types in `gdbots/pbj` library.
   * BigNumber
