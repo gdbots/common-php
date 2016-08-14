@@ -10,6 +10,8 @@ namespace Gdbots\Common;
  * 10 digits (unix timestamp) concatenated with 6 microsecond digits.
  *
  * @link http://php.net/manual/en/function.microtime.php
+ *
+ * @deprecated Use "Gdbots\Pbj\WellKnown\Microtime" from "gdbots/pbj" 1.1.x or later instead.
  */
 class Microtime implements \JsonSerializable
 {
@@ -29,7 +31,10 @@ class Microtime implements \JsonSerializable
     /**
      * Private constructor to ensure static methods are used.
      */
-    private function __construct() {}
+    private function __construct()
+    {
+        @trigger_error(sprintf('"%s" is deprecated.  Use "Gdbots\Pbj\WellKnown\Microtime" from "gdbots/pbj" 1.1.x or later instead.', __CLASS__), E_USER_DEPRECATED);
+    }
 
     /**
      * Create a new object using the current microtime.

@@ -4,6 +4,9 @@ namespace Gdbots\Identifiers;
 
 use Gdbots\Common\Util\StringUtils;
 
+/**
+ * @deprecated Use "Gdbots\Pbj\WellKnown\StringIdentifier" from "gdbots/pbj" 1.1.x or later instead.
+ */
 abstract class StringIdentifier implements Identifier, \JsonSerializable
 {
     /** @var string */
@@ -15,6 +18,8 @@ abstract class StringIdentifier implements Identifier, \JsonSerializable
      */
     protected function __construct($string)
     {
+        @trigger_error(sprintf('"%s" is deprecated.  Use "Gdbots\Pbj\WellKnown\StringIdentifier" from "gdbots/pbj" 1.1.x or later instead.', __CLASS__), E_USER_DEPRECATED);
+
         if (!is_string($string)) {
             throw new \InvalidArgumentException(
                 sprintf('String expected but got [%s].', StringUtils::varToString($string))

@@ -2,6 +2,9 @@
 
 namespace Gdbots\Identifiers;
 
+/**
+ * @deprecated Use "Gdbots\Pbj\WellKnown\Identifier" from "gdbots/pbj" 1.1.x or later instead.
+ */
 interface Identifier
 {
     /**
