@@ -5,6 +5,8 @@ namespace Gdbots\Common;
 /**
  * Represents a GeoJson Point value.
  * @link http://geojson.org/geojson-spec.html#point
+ *
+ * @deprecated Use "Gdbots\Pbj\WellKnown\GeoPoint" from "gdbots/pbj" 1.1.x or later instead.
  */
 class GeoPoint implements FromArray, ToArray, \JsonSerializable
 {
@@ -22,6 +24,8 @@ class GeoPoint implements FromArray, ToArray, \JsonSerializable
      */
     public function __construct($lat, $lon)
     {
+        @trigger_error(sprintf('"%s" is deprecated.  Use "Gdbots\Pbj\WellKnown\GeoPoint" from "gdbots/pbj" 1.1.x or later instead.', __CLASS__), E_USER_DEPRECATED);
+
         $this->latitude = (float) $lat;
         $this->longitude = (float) $lon;
 

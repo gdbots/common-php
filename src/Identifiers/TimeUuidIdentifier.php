@@ -5,6 +5,9 @@ namespace Gdbots\Identifiers;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
+/**
+ * @deprecated Use "Gdbots\Pbj\WellKnown\TimeUuidIdentifier" from "gdbots/pbj" 1.1.x or later instead.
+ */
 class TimeUuidIdentifier extends UuidIdentifier
 {
     /**

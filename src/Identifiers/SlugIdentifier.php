@@ -5,6 +5,9 @@ namespace Gdbots\Identifiers;
 use Gdbots\Common\Util\SlugUtils;
 use Gdbots\Common\Util\StringUtils;
 
+/**
+ * @deprecated Use "Gdbots\Pbj\WellKnown\SlugIdentifier" from "gdbots/pbj" 1.1.x or later instead.
+ */
 abstract class SlugIdentifier implements Identifier, \JsonSerializable
 {
     /** @var string */
@@ -16,6 +19,8 @@ abstract class SlugIdentifier implements Identifier, \JsonSerializable
      */
     protected function __construct($slug)
     {
+        @trigger_error(sprintf('"%s" is deprecated.  Use "Gdbots\Pbj\WellKnown\SlugIdentifier" from "gdbots/pbj" 1.1.x or later instead.', __CLASS__), E_USER_DEPRECATED);
+
         if (!is_string($slug)) {
             throw new \InvalidArgumentException(
                 sprintf('String expected but got [%s].', StringUtils::varToString($slug))

@@ -5,6 +5,9 @@ namespace Gdbots\Identifiers;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
+/**
+ * @deprecated Use "Gdbots\Pbj\WellKnown\UuidIdentifier" from "gdbots/pbj" 1.1.x or later instead.
+ */
 class UuidIdentifier implements Identifier, GeneratesIdentifier, \JsonSerializable
 {
     /** @var UuidInterface */
@@ -15,6 +18,7 @@ class UuidIdentifier implements Identifier, GeneratesIdentifier, \JsonSerializab
      */
     protected function __construct(UuidInterface $uuid)
     {
+        @trigger_error(sprintf('"%s" is deprecated.  Use "Gdbots\Pbj\WellKnown\[Time]UuidIdentifier" from "gdbots/pbj" 1.1.x or later instead.', __CLASS__), E_USER_DEPRECATED);
         $this->uuid = $uuid;
     }
 
