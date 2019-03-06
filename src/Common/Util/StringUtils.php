@@ -9,12 +9,15 @@ final class StringUtils
     /**
      * Private constructor. This class is not meant to be instantiated.
      */
-    private function __construct() {}
+    private function __construct()
+    {
+    }
 
     /**
      * Returns true if the provided string starts with a letter.
      *
      * @param string $str
+     *
      * @return string
      */
     public static function startsWithLetter($str)
@@ -26,6 +29,7 @@ final class StringUtils
      * Converts a camelCase string to slug-i-fied style.
      *
      * @param string $camel
+     *
      * @return string
      */
     public static function toSlugFromCamel($camel)
@@ -37,6 +41,7 @@ final class StringUtils
      * Converts a slug-i-fied string to camelCase style.
      *
      * @param string $slug
+     *
      * @return string
      */
     public static function toCamelFromSlug($slug)
@@ -48,6 +53,7 @@ final class StringUtils
      * Converts a camelCase string to snake_case style.
      *
      * @param string $camel
+     *
      * @return string
      */
     public static function toSnakeFromCamel($camel)
@@ -59,6 +65,7 @@ final class StringUtils
      * Converts a snake_case string to camelCase style.
      *
      * @param string $snake
+     *
      * @return string
      */
     public static function toCamelFromSnake($snake)
@@ -70,6 +77,7 @@ final class StringUtils
      * Converts a slug-case string to snake_case style.
      *
      * @param string $slug
+     *
      * @return string
      */
     public static function toSnakeFromSlug($slug)
@@ -81,6 +89,7 @@ final class StringUtils
      * Converts a snake_case string to slug-case style.
      *
      * @param string $snake
+     *
      * @return string
      */
     public static function toSlugFromSnake($snake)
@@ -93,6 +102,7 @@ final class StringUtils
      * xml attributes and nodes without the use of CDATA.
      *
      * @param string $str
+     *
      * @return string
      */
     public static function xmlEscape($str)
@@ -131,7 +141,7 @@ final class StringUtils
                 $pos += 4;
             } else if (($asciiPos >= 224) && ($asciiPos <= 239)) {
                 // 3 chars representing one unicode character
-                $thisLetter = substr ($str, $pos, 3);
+                $thisLetter = substr($str, $pos, 3);
                 $pos += 3;
             } else if (($asciiPos >= 192) && ($asciiPos <= 223)) {
                 // 2 chars representing one unicode character
@@ -144,7 +154,7 @@ final class StringUtils
             }
 
             // process the string representing the letter to a unicode entity
-            $thisLen = strlen ($thisLetter);
+            $thisLen = strlen($thisLetter);
             $thisPos = 0;
             $decimalCode = 0;
             while ($thisPos < $thisLen) {
@@ -161,9 +171,9 @@ final class StringUtils
             }
 
             if ($thisLen == 1) {
-                $encodedLetter = '&#'. str_pad($decimalCode, 3, '0', STR_PAD_LEFT) . ';';
+                $encodedLetter = '&#' . str_pad($decimalCode, 3, '0', STR_PAD_LEFT) . ';';
             } else {
-                $encodedLetter = '&#'. str_pad($decimalCode, 5, '0', STR_PAD_LEFT) . ';';
+                $encodedLetter = '&#' . str_pad($decimalCode, 5, '0', STR_PAD_LEFT) . ';';
             }
 
             $c = $decimalCode;
@@ -200,6 +210,7 @@ final class StringUtils
 
     /**
      * @param mixed $var
+     *
      * @return string
      */
     public static function varToString($var)
@@ -209,7 +220,7 @@ final class StringUtils
         }
 
         if (is_array($var)) {
-            $a = array();
+            $a = [];
             foreach ($var as $k => $v) {
                 $a[] = sprintf('%s => %s', $k, self::varToString($v));
             }
@@ -234,5 +245,31 @@ final class StringUtils
         }
 
         return (string)$var;
+    }
+
+    /**
+     * @param string $input
+     *
+     * @return string
+     */
+    public static function urlsafeB64Decode($input)
+    {
+        $remainder = strlen($input) % 4;
+        if ($remainder) {
+            $padlen = 4 - $remainder;
+            $input .= str_repeat('=', $padlen);
+        }
+
+        return base64_decode(strtr($input, '-_', '+/'));
+    }
+
+    /**
+     * @param string $input
+     *
+     * @return string
+     */
+    public static function urlsafeB64Encode($input)
+    {
+        return str_replace('=', '', strtr(base64_encode($input), '+/', '-_'));
     }
 }

@@ -2,6 +2,10 @@
 This changelog references the relevant changes done in 1.x versions.
 
 
+## v1.1.1
+* Add `urlsafeB64Decode` and `urlsafeB64Encode` to `StringUtils`.
+
+
 ## v1.1.0
 * Marked these classes as deprecated as they will be removed in 2.x.
   * BigNumber
