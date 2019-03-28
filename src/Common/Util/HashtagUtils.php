@@ -110,7 +110,7 @@ final class HashtagUtils
      */
     public static function extract($str)
     {
-        preg_match_all("/(^|[\n ])#([a-z0-9_-]*)/ise", $str, $matches);
+        preg_match_all("/(^|[\n ])#([a-z0-9_-]*)/is", $str, $matches);
 
         if (!is_array($matches) || !count($matches)) {
             return array();
