@@ -1,6 +1,9 @@
 # CHANGELOG for 1.x
 This changelog references the relevant changes done in 1.x versions.
 
+## v1.1.2
+* Fix bug in `HashtagUtils`, remove deprecated PCRE modifier.
+
 
 ## v1.1.1
 * Add `urlsafeB64Decode` and `urlsafeB64Encode` to `StringUtils`.
