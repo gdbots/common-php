@@ -30,6 +30,7 @@ abstract class Enum implements \JsonSerializable
 
     /**
      * private constructor to ensure flyweight construction.
+     *
      * @param int|string $value
      */
     final private function __construct($value)
@@ -39,6 +40,7 @@ abstract class Enum implements \JsonSerializable
 
     /**
      * @param string|int $value
+     *
      * @return static
      * @throws \UnexpectedValueException
      */
@@ -84,7 +86,7 @@ abstract class Enum implements \JsonSerializable
      */
     final public function __toString()
     {
-        return (string) $this->value;
+        return (string)$this->value;
     }
 
     /**
@@ -127,6 +129,7 @@ abstract class Enum implements \JsonSerializable
      * it to our value.
      *
      * @param Enum|int|string $value
+     *
      * @return bool
      */
     final public function equals($value)
@@ -141,7 +144,8 @@ abstract class Enum implements \JsonSerializable
      * Returns a value when called statically like so: MyEnum::SOME_VALUE() given SOME_VALUE is a class constant
      *
      * @param string $name
-     * @param array $arguments
+     * @param array  $arguments
+     *
      * @return static
      * @throws \BadMethodCallException
      */

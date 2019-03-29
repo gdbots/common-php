@@ -12,6 +12,7 @@ class TimeUuidIdentifier extends UuidIdentifier
 {
     /**
      * @param UuidInterface $uuid
+     *
      * @throws \InvalidArgumentException
      */
     protected function __construct(UuidInterface $uuid)

@@ -11,6 +11,7 @@ interface Identifier
      * Creates an identifier object from a string representation
      *
      * @param string $string
+     *
      * @return static
      * @throws \InvalidArgumentException
      */
@@ -39,6 +40,7 @@ interface Identifier
      * Compares the object to another Identifier object. Returns true if both have the same type and value.
      *
      * @param Identifier $other
+     *
      * @return boolean
      */
     public function equals(Identifier $other);

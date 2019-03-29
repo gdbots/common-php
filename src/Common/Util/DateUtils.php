@@ -5,7 +5,7 @@ namespace Gdbots\Common\Util;
 final class DateUtils
 {
     /**
-     * @link https://en.wikipedia.org/wiki/ISO_8601
+     * @link  https://en.wikipedia.org/wiki/ISO_8601
      * @const string
      */
     const ISO8601_ZULU = 'Y-m-d\TH:i:s.u\Z';
@@ -28,26 +28,29 @@ final class DateUtils
     /**
      * Private constructor. This class is not meant to be instantiated.
      */
-    private function __construct() {}
+    private function __construct()
+    {
+    }
 
     /**
      * Returns true if it's a valid timestamp.
      *
      * @param string $timestamp
-     * @param bool $allowNegative
+     * @param bool   $allowNegative
+     *
      * @return bool
      */
     public static function isValidTimestamp($timestamp, $allowNegative = false)
     {
-        $timestamp = (string) $timestamp;
+        $timestamp = (string)$timestamp;
 
         if ($allowNegative) {
-            return ((string) (int) $timestamp === $timestamp)
+            return ((string)(int)$timestamp === $timestamp)
                 && ($timestamp <= PHP_INT_MAX)
                 && ($timestamp >= self::MIN_UTC_TIME);
         }
 
-        return ((string) (int) $timestamp === $timestamp)
+        return ((string)(int)$timestamp === $timestamp)
             && ($timestamp <= PHP_INT_MAX)
             && ($timestamp >= 0);
     }
@@ -62,6 +65,7 @@ final class DateUtils
      * @link http://en.wikipedia.org/wiki/ISO_8601
      *
      * @param string $string
+     *
      * @return bool
      */
     public static function isValidISO8601Date($string)

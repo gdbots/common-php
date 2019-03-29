@@ -9,7 +9,7 @@ namespace Gdbots\Common;
  *
  * 10 digits (unix timestamp) concatenated with 6 microsecond digits.
  *
- * @link http://php.net/manual/en/function.microtime.php
+ * @link       http://php.net/manual/en/function.microtime.php
  *
  * @deprecated Use "Gdbots\Pbj\WellKnown\Microtime" from "gdbots/pbj" 1.1.x or later instead.
  */
@@ -52,16 +52,17 @@ class Microtime implements \JsonSerializable
      *
      * @link http://php.net/manual/en/function.microtime.php
      *
-     * @param float $float  e.g. 1422060753.9581
+     * @param float $float e.g. 1422060753.9581
+     *
      * @return self
      */
     public static function fromFloat($float)
     {
         $str = substr(str_pad(str_replace('.', '', $float), 16, '0'), 0, 16);
         $m = new self();
-        $m->int = (int) $str;
-        $m->sec = (int) substr($str, 0, 10);
-        $m->usec = (int) substr($str, -6);
+        $m->int = (int)$str;
+        $m->sec = (int)substr($str, 0, 10);
+        $m->usec = (int)substr($str, -6);
         return $m;
     }
 
@@ -72,15 +73,16 @@ class Microtime implements \JsonSerializable
      * @link http://php.net/manual/en/function.gettimeofday.php
      *
      * @param array $tod
+     *
      * @return self
      */
     public static function fromTimeOfDay(array $tod)
     {
         $str = $tod['sec'] . str_pad($tod['usec'], 6, '0', STR_PAD_LEFT);
         $m = new self();
-        $m->int = (int) $str;
-        $m->sec = (int) substr($str, 0, 10);
-        $m->usec = (int) substr($str, -6);
+        $m->int = (int)$str;
+        $m->sec = (int)substr($str, 0, 10);
+        $m->usec = (int)substr($str, -6);
         return $m;
     }
 
@@ -91,12 +93,13 @@ class Microtime implements \JsonSerializable
      * Lack of precision on digits will be automatically padded with zeroes.
      *
      * @param string|int $stringOrInteger
+     *
      * @return self
      * @throws \InvalidArgumentException
      */
     public static function fromString($stringOrInteger)
     {
-        $int = (int) $stringOrInteger;
+        $int = (int)$stringOrInteger;
         $len = strlen($int);
         if ($len < 13 || $len > 16) {
             throw new \InvalidArgumentException(
@@ -109,13 +112,13 @@ class Microtime implements \JsonSerializable
         }
 
         if ($len < 16) {
-            $int = (int) str_pad($int, 16, '0');
+            $int = (int)str_pad($int, 16, '0');
         }
 
         $m = new self();
         $m->int = $int;
-        $m->sec = (int) substr($int, 0, 10);
-        $m->usec = (int) substr($int, -6);
+        $m->sec = (int)substr($int, 0, 10);
+        $m->usec = (int)substr($int, -6);
         return $m;
     }
 
@@ -124,15 +127,16 @@ class Microtime implements \JsonSerializable
      * it's timestamp and microseconds.
      *
      * @param \DateTime $date
+     *
      * @return self
      */
     public static function fromDateTime(\DateTime $date)
     {
         $str = $date->format('U') . str_pad($date->format('u'), 6, '0');
         $m = new self();
-        $m->int = (int) $str;
-        $m->sec = (int) substr($str, 0, 10);
-        $m->usec = (int) substr($str, -6);
+        $m->int = (int)$str;
+        $m->sec = (int)substr($str, 0, 10);
+        $m->usec = (int)substr($str, -6);
         return $m;
     }
 
@@ -141,7 +145,7 @@ class Microtime implements \JsonSerializable
      */
     public function toString()
     {
-        return (string) $this->int;
+        return (string)$this->int;
     }
 
     /**
@@ -189,6 +193,6 @@ class Microtime implements \JsonSerializable
      */
     public function toFloat()
     {
-        return (float) ($this->sec . '.' . str_pad($this->usec, 6, '0', STR_PAD_LEFT));
+        return (float)($this->sec . '.' . str_pad($this->usec, 6, '0', STR_PAD_LEFT));
     }
 }

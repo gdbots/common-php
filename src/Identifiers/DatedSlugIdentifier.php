@@ -15,6 +15,7 @@ abstract class DatedSlugIdentifier implements Identifier, \JsonSerializable
 
     /**
      * @param string $slug
+     *
      * @throws \InvalidArgumentException
      */
     protected function __construct($slug)
@@ -37,8 +38,9 @@ abstract class DatedSlugIdentifier implements Identifier, \JsonSerializable
     }
 
     /**
-     * @param string $string
+     * @param string    $string
      * @param \DateTime $date
+     *
      * @return static
      */
     public static function create($string, \DateTime $date = null)
