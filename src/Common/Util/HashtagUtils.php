@@ -30,17 +30,20 @@ final class HashtagUtils
     /**
      * Private constructor. This class is not meant to be instantiated.
      */
-    private function __construct() {}
+    private function __construct()
+    {
+    }
 
     /**
      * Converts special chars to more url friendly versions.
      *
      * @param $str
+     *
      * @return string
      */
     public static function normalize($str)
     {
-        $str = strtr($str, array('ő' => 'o', 'ű' => 'u', 'Ő' => 'O', 'Ű' => 'U'));
+        $str = strtr($str, ['ő' => 'o', 'ű' => 'u', 'Ő' => 'O', 'Ű' => 'U']);
         $a = 'ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖŐØÙÚÛÜŰÝÞßàáâãäåæçèéêëìíîïðñòóôõöőøùúûűüýýþÿŔŕ';
         $b = 'AAAAAAACEEEEIIIIDNOOOOOOOUUUUUYbsaaaaaaaceeeeiiiidnooooooouuuuuyybyRr';
         $str = utf8_decode($str);
@@ -54,7 +57,8 @@ final class HashtagUtils
      * cannot be converted.
      *
      * @param string $str
-     * @param bool $camelize
+     * @param bool   $camelize
+     *
      * @return string|null
      */
     public static function create($str, $camelize = true)
@@ -64,8 +68,8 @@ final class HashtagUtils
         $str = ltrim($str, '#_ ');
 
         // handle some punctuation and convertable chars
-        $find = array("'", "?", "#", "/", "\"", "\\", "&amp;", "&", "%", "@");
-        $repl = array('', '', '', '', '', '', ' And ', ' And ', ' Percent ', ' At ');
+        $find = ["'", "?", "#", "/", "\"", "\\", "&amp;", "&", "%", "@"];
+        $repl = ['', '', '', '', '', '', ' And ', ' And ', ' Percent ', ' At '];
         $str = str_replace($find, $repl, $str);
 
         // replace everything else and split up the words
@@ -106,6 +110,7 @@ final class HashtagUtils
      * will work with this method.
      *
      * @param string $str
+     *
      * @return array
      */
     public static function extract($str)
@@ -113,10 +118,10 @@ final class HashtagUtils
         preg_match_all("/(^|[\n ])#([a-z0-9_-]*)/is", $str, $matches);
 
         if (!is_array($matches) || !count($matches)) {
-            return array();
+            return [];
         }
 
-        $hashtags = array();
+        $hashtags = [];
         foreach ($matches[0] as $match) {
             $match = ltrim(trim($match), '#_ ');
             if (self::isValid($match)) {
@@ -131,6 +136,7 @@ final class HashtagUtils
      * Returns true if the provided hashtag conforms to the rules.
      *
      * @param string $hashtag
+     *
      * @return boolean
      */
     public static function isValid($hashtag)
@@ -169,6 +175,7 @@ final class HashtagUtils
      * It's good nuff.
      *
      * @param string $hashtag
+     *
      * @return string
      */
     public static function humanize($hashtag)

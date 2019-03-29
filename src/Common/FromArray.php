@@ -10,6 +10,7 @@ interface FromArray
      * that signature.
      *
      * @param array $data
+     *
      * @return static
      */
     public static function fromArray(array $data = []);

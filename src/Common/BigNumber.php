@@ -11,7 +11,7 @@ class BigNumber extends \Moontoast\Math\BigNumber implements \JsonSerializable
      * BigNumber constructor.
      *
      * @param mixed $number
-     * @param null $scale
+     * @param null  $scale
      */
     public function __construct($number, $scale = null)
     {
@@ -24,6 +24,6 @@ class BigNumber extends \Moontoast\Math\BigNumber implements \JsonSerializable
      */
     public function jsonSerialize()
     {
-        return (string) $this->getValue();
+        return (string)$this->getValue();
     }
 }

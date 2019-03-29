@@ -4,7 +4,7 @@ namespace Gdbots\Common;
 
 /**
  * Represents a GeoJson Point value.
- * @link http://geojson.org/geojson-spec.html#point
+ * @link       http://geojson.org/geojson-spec.html#point
  *
  * @deprecated Use "Gdbots\Pbj\WellKnown\GeoPoint" from "gdbots/pbj" 1.1.x or later instead.
  */
@@ -26,8 +26,8 @@ class GeoPoint implements FromArray, ToArray, \JsonSerializable
     {
         @trigger_error(sprintf('"%s" is deprecated.  Use "Gdbots\Pbj\WellKnown\GeoPoint" from "gdbots/pbj" 1.1.x or later instead.', __CLASS__), E_USER_DEPRECATED);
 
-        $this->latitude = (float) $lat;
-        $this->longitude = (float) $lon;
+        $this->latitude = (float)$lat;
+        $this->longitude = (float)$lon;
 
         if ($this->latitude > 90.0 || $this->latitude < -90.0) {
             throw new \InvalidArgumentException('Latitude must be within range [-90.0, 90.0]');
@@ -83,6 +83,7 @@ class GeoPoint implements FromArray, ToArray, \JsonSerializable
 
     /**
      * @param string $string A string with format lat,long
+     *
      * @return self
      */
     public static function fromString($string)

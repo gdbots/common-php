@@ -10,13 +10,16 @@ final class SlugUtils
     /**
      * Private constructor. This class is not meant to be instantiated.
      */
-    private function __construct() {}
+    private function __construct()
+    {
+    }
 
     /**
      * Creates a slug from the text given.
      *
      * @param string $string
-     * @param bool $allowSlashes
+     * @param bool   $allowSlashes
+     *
      * @return string
      */
     public static function create($string, $allowSlashes = false)
@@ -75,23 +78,23 @@ final class SlugUtils
             }
         }
 
-        $find = array(
+        $find = [
             "'",
             "\"",
             "\\",
             "&",
             "%",
             "@",
-        );
+        ];
 
-        $repl = array(
+        $repl = [
             '',
             '',
             '',
             '-and-',
             '-percent-',
             '-at-',
-        );
+        ];
 
         $slug = str_replace($find, $repl, $slug);
 
@@ -105,7 +108,7 @@ final class SlugUtils
         $slug = preg_replace("/\-+/i", '-', $slug);
 
         if ($allowSlashes) {
-            $slug = str_replace(array('-/', '/-'), '/', $slug);
+            $slug = str_replace(['-/', '/-'], '/', $slug);
             // replace more than one slash in a row
             $slug = preg_replace("/\/+/i", '/', $slug);
         }
@@ -120,8 +123,9 @@ final class SlugUtils
     /**
      * Adds the date in the format YYYY/mm/dd to the slug.
      *
-     * @param string $slug
+     * @param string    $slug
      * @param \DateTime $date
+     *
      * @return string
      */
     public static function addDate($slug, \DateTime $date)
@@ -133,6 +137,7 @@ final class SlugUtils
      * Removes the date in the format YYYY/mm/dd from the slug if it is found.
      *
      * @param string $slug
+     *
      * @return string
      */
     public static function removeDate($slug)
@@ -148,6 +153,7 @@ final class SlugUtils
      * Detemines if the slug contains a date in the format YYYY/mm/dd
      *
      * @param string $slug
+     *
      * @return int
      */
     public static function containsDate($slug)
@@ -159,6 +165,7 @@ final class SlugUtils
      * Translates, as best as possible, a slug back into a human readable format.
      *
      * @param string $slug
+     *
      * @return string
      */
     public static function humanize($slug)
@@ -171,7 +178,8 @@ final class SlugUtils
 
     /**
      * @param string $string
-     * @param bool $allowSlashes
+     * @param bool   $allowSlashes
+     *
      * @return bool
      */
     public static function isValid($string, $allowSlashes = false)
@@ -182,7 +190,8 @@ final class SlugUtils
 
     /**
      * @param string $string
-     * @param bool $allowSlashes
+     * @param bool   $allowSlashes
+     *
      * @return string
      */
     public static function createFromCamel($string, $allowSlashes = false)

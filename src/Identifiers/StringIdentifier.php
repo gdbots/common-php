@@ -14,6 +14,7 @@ abstract class StringIdentifier implements Identifier, \JsonSerializable
 
     /**
      * @param string $string
+     *
      * @throws \InvalidArgumentException
      */
     protected function __construct($string)
@@ -26,7 +27,7 @@ abstract class StringIdentifier implements Identifier, \JsonSerializable
             );
         }
 
-        $this->string = trim((string) $string);
+        $this->string = trim((string)$string);
 
         if (empty($this->string)) {
             throw new \InvalidArgumentException('String cannot be empty.');

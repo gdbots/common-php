@@ -15,6 +15,7 @@ abstract class SlugIdentifier implements Identifier, \JsonSerializable
 
     /**
      * @param string $slug
+     *
      * @throws \InvalidArgumentException
      */
     protected function __construct($slug)
@@ -38,6 +39,7 @@ abstract class SlugIdentifier implements Identifier, \JsonSerializable
 
     /**
      * @param string $string
+     *
      * @return static
      */
     public static function create($string)

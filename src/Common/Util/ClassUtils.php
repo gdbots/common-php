@@ -16,7 +16,9 @@ final class ClassUtils
     /**
      * Private constructor. This class is not meant to be instantiated.
      */
-    private function __construct() {}
+    private function __construct()
+    {
+    }
 
     /**
      * Returns an array of all the traits that a class is using.  This
@@ -26,13 +28,14 @@ final class ClassUtils
      * for optimal checking on the usesTrait method.
      *
      * @param string|object $class
-     * @param bool $deep
-     * @param bool $autoload
+     * @param bool          $deep
+     * @param bool          $autoload
+     *
      * @return array
      */
     private static function loadTraits($class, $deep = true, $autoload = true)
     {
-        $cachKey = is_object($class) ? get_class($class) : (string) $class;
+        $cachKey = is_object($class) ? get_class($class) : (string)$class;
         $cachKey .= $deep ? ':deep' : '';
         $cachKey .= $autoload ? ':autoload' : '';
 
@@ -64,8 +67,9 @@ final class ClassUtils
      * includes all of the extended classes and traits by default.
      *
      * @param string|object $class
-     * @param bool $deep
-     * @param bool $autoload
+     * @param bool          $deep
+     * @param bool          $autoload
+     *
      * @return array
      */
     public static function getTraits($class, $deep = true, $autoload = true)
@@ -77,7 +81,8 @@ final class ClassUtils
      * Returns true if a class uses a given trait.
      *
      * @param string|object $class
-     * @param string $trait full qualified class name
+     * @param string        $trait full qualified class name
+     *
      * @return bool
      */
     public static function usesTrait($class, $trait)
@@ -89,6 +94,7 @@ final class ClassUtils
      * Returns the class name of an object, without the namespace
      *
      * @param object|string $objectOrString
+     *
      * @return string
      */
     public static function getShortName($objectOrString)
@@ -101,6 +107,7 @@ final class ClassUtils
      * Returns an array of CONSTANT_NAME => value for a given class
      *
      * @param string $className
+     *
      * @return array
      */
     public static function getConstants($className)
